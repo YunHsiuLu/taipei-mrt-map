@@ -63,10 +63,10 @@ body, html, #root {
 /* 1. 電腦版預設 (Desktop) */
 .station-pin {
   position: absolute;
-  width: 20px;            /* 電腦版維持 20px */
-  height: 20px;
+  width: 25px;            /* 電腦版維持 20px */
+  height: 25px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.9); /* 稍微調高不透明度 */
+  background-color: rgba(255, 255, 255, 0.5); /* 稍微調高不透明度 */
   border: 3px solid #333; /* 預設邊框粗細 */
   transform: translate(-50%, -50%); /* 讓座標點位於圓心 */
   cursor: pointer;
@@ -114,8 +114,8 @@ body, html, #root {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30px;  /* 實際感應區固定為 30px */
-  height: 30px; 
+  width: 15px;  /* 實際感應區固定為 30px */
+  height: 15px; 
   background: transparent; /* 透明 */
   border-radius: 50%;
   z-index: 1; 
