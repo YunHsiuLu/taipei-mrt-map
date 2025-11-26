@@ -156,8 +156,9 @@ body, html, #root {
 /* 轉乘站 (黑色) */
 .station-pin.line-black { 
   border-color: #333333;
-  background-color: #ffffff; /* 轉乘站維持白底黑框 */
   z-index: 10; /* 確保轉乘站浮在最上面 */
+  width: 30px;
+  height: 30px;
 }
 
 
