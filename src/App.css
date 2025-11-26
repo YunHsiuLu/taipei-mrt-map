@@ -1,0 +1,153 @@
+/* src/App.css */
+
+/* 1. 確保外層容器佔滿整個螢幕高度 */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* 2. 地圖頁面的主容器設定為 Flexbox 置中 */
+.map-container {
+  display: flex;         /* 啟用 Flexbox */
+  flex-direction: column;/* 內容垂直排列 (標題在上，地圖在下) */
+  justify-content: center;/* 垂直置中 (Vertical Center) */
+  align-items: center;    /* 水平置中 (Horizontal Center) */
+  min-height: 100vh;      /* 最小高度為視窗高度 */
+  background-color: #f0f2f5; /* 淺灰色背景，讓畫面比較柔和 */
+  padding: 20px;          /* 避免貼邊 */
+  box-sizing: border-box;
+}
+
+/* 3. 地圖圖片與按鈕的包覆層 */
+.map-wrapper {
+  position: relative;    /* 關鍵：讓按鈕根據此框框定位 */
+  display: inline-block; /* 讓容器大小貼合圖片 */
+  
+  /* --- 尺寸控制 (重要) --- */
+  width: 100%;           /* 預設寬度 */
+  max-width: 1000px;     /* 最大寬度限制 */
+  
+  /* 如果你希望地圖「整張」都看得到，不要上下捲動，請加下面這行： */
+  /* max-height: 85vh; */  
+  /* aspect-ratio: auto; */ 
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* 加點陰影增加立體感 */
+  border-radius: 15px;   /* 圓角 */
+  overflow: hidden;      /* 確保圖片圓角不被切掉 */
+  background: white;
+}
+
+/* 4. 圖片本體 */
+.mrt-map-img {
+  display: block;        /* 消除圖片底部的微小縫隙 */
+  width: 100%;           /* 寬度跟隨容器 */
+  height: auto;          /* 高度自動等比例 */
+  
+  /* 如果你有設定上面的 max-height，這裡要加 object-fit: contain; */
+}
+
+/* 5. 標題樣式微調 (選用) */
+.map-container h1 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+/* 車站互動點 (Pin) */
+.station-pin {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 3px solid #333;
+  transform: translate(-50%, -50%); /* 讓座標點位於圓心 */
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.station-pin:hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 10;
+}
+
+/* --- 捷運路線顏色設定 --- */
+
+/* 紅線 (淡水信義線) */
+.station-pin.line-red { 
+  border-color: #e3002c; 
+}
+
+/* 藍線 (板南線) */
+.station-pin.line-blue { 
+  border-color: #0070bd; 
+}
+
+/* 綠線 (松山新店線) */
+.station-pin.line-green { 
+  border-color: #008659; 
+}
+
+/* 橘線 (中和新蘆線) */
+.station-pin.line-orange { 
+  border-color: #f8b61c; 
+}
+
+/* 棕線 (文湖線) */
+.station-pin.line-brown { 
+  border-color: #c48c31; 
+}
+
+/* ★★★ 環狀線 (Yellow Line) */
+.station-pin.line-yellow { 
+  border-color: #FFD306; /* 台北捷運官方環狀線黃色 */
+}
+
+/* 轉乘站 (黑色) */
+.station-pin.line-black { 
+  border-color: #333333;
+  background-color: #ffffff; /* 轉乘站維持白底黑框 */
+  z-index: 10; /* 確保轉乘站浮在最上面 */
+}
+
+
+/* 詳情頁樣式 */
+.detail-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.back-btn {
+  background: #eee;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  background: #ddd;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.feature-card {
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fafafa;
+}
