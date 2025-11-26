@@ -56,22 +56,69 @@ body, html, #root {
   text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
 }
 
-/* 車站互動點 (Pin) */
+/* =========================================
+   車站互動點 (Pin) - 響應式修改版
+   ========================================= */
+
+/* 1. 電腦版預設 (Desktop) */
 .station-pin {
   position: absolute;
-  width: 20px;
+  width: 20px;            /* 電腦版維持 20px */
   height: 20px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 3px solid #333;
+  background-color: rgba(255, 255, 255, 0.9); /* 稍微調高不透明度 */
+  border: 3px solid #333; /* 預設邊框粗細 */
   transform: translate(-50%, -50%); /* 讓座標點位於圓心 */
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s;
+  box-sizing: border-box; /* 確保邊框算在寬度內 */
+  z-index: 5;
 }
 
+/* 滑鼠懸停效果 */
 .station-pin:hover {
-  transform: translate(-50%, -50%) scale(1.5);
-  z-index: 10;
+  transform: translate(-50%, -50%) scale(1.3); /* 手機上不要放大太多，改為 1.3 */
+  z-index: 20; /* hover 時浮到最上層 */
+}
+
+/* 2. 平板或小筆電 (Tablet / Small Laptop) - 螢幕寬度小於 1024px */
+@media (max-width: 1024px) {
+  .station-pin {
+    width: 14px;          /* 縮小寬度 */
+    height: 14px;
+    border-width: 2.5px;  /* 邊框變細一點 */
+  }
+}
+
+/* 3. 手機版 (Mobile) - 螢幕寬度小於 600px */
+@media (max-width: 600px) {
+  .station-pin {
+    width: 10px;          /* 縮到更小，避免擁擠 */
+    height: 10px;
+    border-width: 1.5px;  /* 邊框變細，保留顏色辨識度 */
+  }
+  
+  /* 手機上，轉乘站(黑色)稍微大一點點，方便辨識 */
+  .station-pin.line-black {
+    z-index: 15;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* 4. [UX優化] 擴大點擊範圍 (Magic Touch Area) */
+/* 圓圈變小了很難點，用偽元素做一個透明的「大按鈕」蓋在上面 */
+.station-pin::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;  /* 實際感應區固定為 30px */
+  height: 30px; 
+  background: transparent; /* 透明 */
+  border-radius: 50%;
+  z-index: 1; 
 }
 
 /* --- 捷運路線顏色設定 --- */
